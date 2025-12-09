@@ -199,6 +199,7 @@ Performance metrics from incident response activities:
 #### Containment
 <!-- Add your screenshot of UFW firewall block -->
 ![Firewall Block](screenshots/ssh-brute-force/04-containment-ufw.png)
+
 *UFW firewall rule blocking attacker IP address*
 
 ---

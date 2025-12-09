@@ -9,7 +9,7 @@
 | **Severity** | 🔴 **HIGH** |
 | **Classification** | True Positive - Confirmed Attack |
 | **Status** | ✅ CONTAINED |
-| **Analyst** | Steve (SOC Analyst) |
+| **Analyst** | Esteban (SOC Analyst) |
 | **MITRE ATT&CK** | [T1110 - Brute Force](https://attack.mitre.org/techniques/T1110/) |
 
 ---
@@ -29,7 +29,7 @@ A brute force attack targeting SSH services was detected on the ubuntu-desktop e
 | **Target Service** | SSH (Port 22) |
 | **Target Username** | admin |
 | **Attack Tool** | Hydra v9.5 (Password Cracking Tool) |
-| **Total Alerts Generated** | 94 security events |
+| **Total Alerts Generated** | 90 security events |
 | **Authentication Result** | ✅ **FAILED** - No credentials compromised |
 
 ---

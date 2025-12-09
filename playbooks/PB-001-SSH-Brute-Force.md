@@ -7,7 +7,7 @@
 | **Playbook ID** | PB-001 |
 | **Version** | 1.0 |
 | **Last Updated** | December 6, 2025 |
-| **Author** | Steve (SOC Analyst) |
+| **Author** | Estebam (SOC Analyst) |
 | **Threat Type** | SSH Brute Force / Credential Stuffing |
 | **Severity** | 🔴 HIGH |
 | **MITRE ATT&CK** | [T1110 - Brute Force](https://attack.mitre.org/techniques/T1110/) |

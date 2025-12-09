@@ -77,7 +77,7 @@ A brute force attack targeting SSH services was detected on the ubuntu-desktop e
 #### Attack Timeline
 <!-- Add screenshot showing the histogram/timeline of events -->
 ![Timeline](../screenshots/ssh-brute-force/03-attack-timeline.png)
-*Event timeline showing concentration of attacks between 15:49-15:53*
+*Event timeline showing concentration of attacks between 15:49-15:50*
 
 ---
 

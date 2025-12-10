@@ -109,7 +109,7 @@ This project simulates a real-world Security Operations Center environment where
 | # | Scenario | MITRE ATT&CK | Status | Incident Report |
 |---|----------|--------------|--------|-----------------|
 | 1 | SSH Brute Force | T1110 - Brute Force | ✅ Complete | [INC-001](incidents/INC-001-SSH-Brute-Force.md) |
-| 2 | Malware Detection (EICAR) | T1204 - User Execution | 🔄 In Progress | INC-002 |
+| 2 | Malware Detection (FIM) | T1565.001 - Stored Data Manipulation | ✅ Complete | [INC-002](incidents/INC-002-Malware-Detection.md) |
 | 3 | Privilege Escalation | T1548 - Abuse Elevation Control | ⏳ Planned | INC-003 |
 | 4 | Port Scanning | T1046 - Network Service Discovery | ⏳ Planned | INC-004 |
 | 5 | SQL Injection | T1190 - Exploit Public-Facing App | ⏳ Planned | INC-005 |
@@ -120,21 +120,23 @@ This project simulates a real-world Security Operations Center environment where
 
 ## Incident Reports
 
-Detailed documentation of each security incident including timeline, investigation steps, and remediation actions.
+Detailed documentation of each security incident including timeline, investigation steps, and escalation actions.
 
 | Incident ID | Title | Severity | Classification | Link |
 |-------------|-------|----------|----------------|------|
 | INC-001 | SSH Brute Force Attack | 🔴 HIGH | True Positive | [View Report](incidents/INC-001-SSH-Brute-Force.md) |
+| INC-002 | Suspicious File Detection (FIM) | 🟠 MEDIUM | True Positive | [View Report](incidents/INC-002-Malware-Detection.md) |
 
 ---
 
 ## Response Playbooks
 
-Step-by-step procedures for responding to common security incidents.
+Step-by-step Tier 1 procedures for triaging and escalating common security incidents.
 
 | Playbook ID | Title | Threat Type | Link |
 |-------------|-------|-------------|------|
-| PB-001 | SSH Brute Force Response | Credential Attack | [View Playbook](playbooks/PB-001-SSH-Brute-Force.md) |
+| PB-001 | SSH Brute Force Detection & Triage | Credential Attack | [View Playbook](playbooks/PB-001-SSH-Brute-Force.md) |
+| PB-002 | FIM / Suspicious File Response | Malware / File Integrity | [View Playbook](playbooks/PB-002-FIM-Malware-Detection.md) |
 
 ---
 
@@ -147,8 +149,8 @@ Performance metrics from incident response activities:
 | Mean Time to Detect (MTTD) | < 5 min | ✅ < 1 min |
 | Mean Time to Respond (MTTR) | < 15 min | ✅ ~10 min |
 | True Positive Rate | > 90% | ✅ 100% |
-| Incidents Documented | 7+ | 🔄 1 (in progress) |
-| Playbooks Created | 7+ | 🔄 1 (in progress) |
+| Incidents Documented | 7+ | 🔄 2 (in progress) |
+| Playbooks Created | 7+ | 🔄 2 (in progress) |
 
 ---
 
@@ -179,6 +181,8 @@ Performance metrics from incident response activities:
 ![Wazuh Dashboard Home](screenshots/wazuh-dashboard-home.png)
 *Wazuh Dashboard showing monitored agents and security events*
 
+---
+
 ### Scenario 1: SSH Brute Force Attack
 
 #### Attack Detection
@@ -199,8 +203,26 @@ Performance metrics from incident response activities:
 #### Containment
 <!-- Add your screenshot of UFW firewall block -->
 ![Firewall Block](screenshots/ssh-brute-force/04-containment-ufw.png)
-
 *UFW firewall rule blocking attacker IP address*
+
+---
+
+### Scenario 2: Malware Detection (FIM)
+
+#### FIM Alert Overview
+<!-- Add your screenshot showing FIM alerts in Discover -->
+![FIM Alerts](screenshots/malware-detection/01-fim-alerts-overview.png)
+*Wazuh FIM detecting suspicious file added to /tmp directory*
+
+#### File Added Alert (Rule 554)
+<!-- Add your screenshot showing file added alert with hashes -->
+![File Added Details](screenshots/malware-detection/02-file-added-details.png)
+*Alert details showing file path, MD5/SHA256 hashes, and file metadata*
+
+#### File Modified Alert (Rule 550)
+<!-- Add your screenshot showing file modified alert -->
+![File Modified Details](screenshots/malware-detection/03-file-modified-details.png)
+*FIM detecting file integrity change with before/after comparison*
 
 ---
 
@@ -210,11 +232,13 @@ Performance metrics from incident response activities:
 1. **Real-time detection is critical** - Wazuh detected the brute force attack within seconds, enabling rapid response
 2. **Log correlation reveals patterns** - Multiple rule IDs (5758, 5710, 2502) together confirmed automated attack vs. user error
 3. **Defense in depth works** - SSH rate limiting + SIEM detection + firewall blocking created multiple defensive layers
+4. **FIM provides early warning** - File Integrity Monitoring detected suspicious files immediately upon creation, enabling rapid triage
 
 ### Process Improvements
 1. **Document as you go** - Capturing timestamps during the incident made report writing much easier
 2. **Playbooks save time** - Having a documented procedure reduced response time significantly
 3. **Screenshots are evidence** - Visual documentation proves hands-on experience to potential employers
+4. **Collect hashes immediately** - Gathering MD5/SHA256 hashes allows Tier 2 to check threat intelligence quickly
 
 ---
 
@@ -228,15 +252,9 @@ Performance metrics from incident response activities:
 
 ---
 
-## Connect With Me
-
-- 📧 [LinkedIn](https://www.linkedin.com/in/esteban-salinas-11bb25291)
-- 🔐 [CompTIA Security+ Certification](https://www.credly.com/badges/5316b1a9-f965-4b82-927f-82881234d4ab/public_url)
-
----
-
 ## Acknowledgments
 
 - [Wazuh Documentation](https://documentation.wazuh.com/)
 - [MITRE ATT&CK Framework](https://attack.mitre.org/)
+- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
 - [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)

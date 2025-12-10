@@ -216,12 +216,12 @@ Performance metrics from incident response activities:
 
 #### File Added Alert (Rule 554)
 <!-- Add your screenshot showing file added alert with hashes -->
-![File Added Details](screenshots/malware-detection/02-file-added-details.png)
+![File Added Details](screenshots/malware-detection/02-fim-alerts-added.png)
 *Alert details showing file path, MD5/SHA256 hashes, and file metadata*
 
 #### File Modified Alert (Rule 550)
 <!-- Add your screenshot showing file modified alert -->
-![File Modified Details](screenshots/malware-detection/03-file-modified-details.png)
+![File Modified Details](screenshots/malware-detection/03-fim-modified-details.png)
 *FIM detecting file integrity change with before/after comparison*
 
 ---

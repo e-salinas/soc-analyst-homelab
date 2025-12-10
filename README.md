@@ -140,20 +140,6 @@ Step-by-step Tier 1 procedures for triaging and escalating common security incid
 
 ---
 
-## Key Metrics
-
-Performance metrics from incident response activities:
-
-| Metric | Target | Achieved |
-|--------|--------|----------|
-| Mean Time to Detect (MTTD) | < 5 min | ✅ < 1 min |
-| Mean Time to Respond (MTTR) | < 15 min | ✅ ~10 min |
-| True Positive Rate | > 90% | ✅ 100% |
-| Incidents Documented | 7+ | 🔄 2 (in progress) |
-| Playbooks Created | 7+ | 🔄 2 (in progress) |
-
----
-
 ## Tools & Technologies
 
 ### Security Tools
@@ -217,12 +203,12 @@ Performance metrics from incident response activities:
 #### File Added Alert (Rule 554)
 <!-- Add your screenshot showing file added alert with hashes -->
 ![File Added Details](screenshots/malware-detection/02-fim-alerts-added.png)
-*Alert details showing file path, MD5/SHA256 hashes, and file metadata*
+*Alert details showing file path and MD5/SHA256 hashes*
 
 #### File Modified Alert (Rule 550)
 <!-- Add your screenshot showing file modified alert -->
 ![File Modified Details](screenshots/malware-detection/03-fim-modified-details.png)
-*FIM detecting file integrity change with before/after comparison*
+*FIM detecting file integrity change*
 
 ---
 
@@ -237,8 +223,7 @@ Performance metrics from incident response activities:
 ### Process Improvements
 1. **Document as you go** - Capturing timestamps during the incident made report writing much easier
 2. **Playbooks save time** - Having a documented procedure reduced response time significantly
-3. **Screenshots are evidence** - Visual documentation proves hands-on experience to potential employers
-4. **Collect hashes immediately** - Gathering MD5/SHA256 hashes allows Tier 2 to check threat intelligence quickly
+3. **Collect hashes immediately** - Gathering MD5/SHA256 hashes allows Tier 2 to check threat intelligence quickly
 
 ---
 

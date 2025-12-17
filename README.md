@@ -91,26 +91,13 @@ This project simulates a real-world Security Operations Center environment where
 
 ---
 
-## Skills Demonstrated
-
-| Skill Category | Specific Skills |
-|----------------|-----------------|
-| **SIEM Operations** | Alert monitoring, log analysis, correlation rules, dashboard navigation |
-| **Incident Response** | Detection, triage, investigation, containment, documentation |
-| **Threat Analysis** | Attack pattern recognition, IOC identification, MITRE ATT&CK mapping |
-| **Documentation** | Incident reports, response playbooks, timeline creation |
-| **Linux Administration** | Firewall configuration (UFW), service management, log analysis |
-| **Network Security** | Traffic analysis, port scanning detection, network segmentation |
-
----
-
 ## Attack Scenarios
 
 | # | Scenario | MITRE ATT&CK | Status | Incident Report |
 |---|----------|--------------|--------|-----------------|
 | 1 | SSH Brute Force | T1110 - Brute Force | ✅ Complete | [INC-001](incidents/INC-001-SSH-Brute-Force.md) |
 | 2 | Malware Detection (FIM) | T1565.001 - Stored Data Manipulation | ✅ Complete | [INC-002](incidents/INC-002-Malware-Detection.md) |
-| 3 | Privilege Escalation | T1548 - Abuse Elevation Control | ⏳ Planned | INC-003 |
+| 3 | Privilege Escalation | T1078 - Valid Acounts | ✅ Complete | INC-003 |
 | 4 | Port Scanning | T1046 - Network Service Discovery | ⏳ Planned | INC-004 |
 | 5 | SQL Injection | T1190 - Exploit Public-Facing App | ⏳ Planned | INC-005 |
 | 6 | Suspicious Process | T1059 - Command and Scripting | ⏳ Planned | INC-006 |
@@ -163,7 +150,7 @@ Step-by-step Tier 1 procedures for triaging and escalating common security incid
 ## Screenshots
 
 ### Lab Overview
-<!-- Add your Wazuh dashboard home screenshot -->
+
 ![Wazuh Dashboard Home](screenshots/wazuh-dashboard-home.png)
 *Wazuh Dashboard showing monitored agents and security events*
 
@@ -172,22 +159,22 @@ Step-by-step Tier 1 procedures for triaging and escalating common security incid
 ### Scenario 1: SSH Brute Force Attack
 
 #### Attack Detection
-<!-- Add your screenshot showing the 94 alerts -->
+
 ![SSH Brute Force Alerts](screenshots/ssh-brute-force/01-alerts-overview.png)
 *Wazuh detecting 94 authentication failure events from brute force attack*
 
 #### Alert Details
-<!-- Add your screenshot of expanded alert details -->
+
 ![Alert Details](screenshots/ssh-brute-force/02-alert-details.png)
 *Detailed view showing attacker IP, target system, and MITRE ATT&CK mapping (T1110)*
 
 #### Attack Timeline
-<!-- Add your screenshot showing the event timeline/histogram -->
+
 ![Attack Timeline](screenshots/ssh-brute-force/03-attack-timeline.png)
 *Timeline showing burst of authentication attempts during attack window*
 
 #### Containment
-<!-- Add your screenshot of UFW firewall block -->
+
 ![Firewall Block](screenshots/ssh-brute-force/04-containment-ufw.png)
 *UFW firewall rule blocking attacker IP address*
 
@@ -196,21 +183,22 @@ Step-by-step Tier 1 procedures for triaging and escalating common security incid
 ### Scenario 2: Malware Detection (FIM)
 
 #### FIM Alert Overview
-<!-- Add your screenshot showing FIM alerts in Discover -->
+
 ![FIM Alerts](screenshots/malware-detection/01-fim-alerts-overview.png)
 *Wazuh FIM detecting suspicious file added to /tmp directory*
 
 #### File Added Alert (Rule 554)
-<!-- Add your screenshot showing file added alert with hashes -->
+
 ![File Added Details](screenshots/malware-detection/02-fim-alerts-added.png)
 *Alert details showing file path and MD5/SHA256 hashes*
 
 #### File Modified Alert (Rule 550)
-<!-- Add your screenshot showing file modified alert -->
+
 ![File Modified Details](screenshots/malware-detection/03-fim-modified-details.png)
 *FIM detecting file integrity change*
 
----
+
+
 
 ## Lessons Learned
 
@@ -223,7 +211,7 @@ Step-by-step Tier 1 procedures for triaging and escalating common security incid
 ### Process Improvements
 1. **Document as you go** - Capturing timestamps during the incident made report writing much easier
 2. **Playbooks save time** - Having a documented procedure reduced response time significantly
-3. **Collect hashes immediately** - Gathering MD5/SHA256 hashes allows Tier 2 to check threat intelligence quickly
+3. **Collect hashes immediately** - Gathering MD5/SHA256 hashes are used to check threat intelligence quickly
 
 ---
 

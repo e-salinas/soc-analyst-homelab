@@ -1,4 +1,4 @@
-# 📘 Tier 1 Playbook: PB-001
+# 📘 Playbook: PB-001
 
 ## SSH Brute Force Detection & Triage
 
@@ -7,28 +7,14 @@
 | **Playbook ID** | PB-001 |
 | **Version** | 1.0 |
 | **Last Updated** | December 6, 2025 |
-| **Author** | Estebam (SOC Analyst) |
+| **Author** | Esteban |
 | **Threat Type** | SSH Brute Force / Credential Stuffing |
 | **Severity** | 🔴 HIGH |
 | **MITRE ATT&CK** | [T1110 - Brute Force](https://attack.mitre.org/techniques/T1110/) |
 
 ---
 
-## Scope
-
-This playbook covers **Tier 1 SOC Analyst responsibilities**:
-
-| ✅ Tier 1 Responsibilities | ❌ Out of Scope (Tier 2/3) |
-|---------------------------|---------------------------|
-| Detection & Alert Triage | Active containment actions |
-| Initial Investigation | Firewall modifications |
-| Classification (TP/FP) | System remediation |
-| Documentation | Forensic analysis |
-| Escalation to Tier 2 | Malware removal |
-
----
-
-## Trigger Conditions
+## Trigger
 
 Execute this playbook when you see these alerts in Wazuh SIEM:
 
@@ -43,13 +29,6 @@ Execute this playbook when you see these alerts in Wazuh SIEM:
 
 ## Step 1: Alert Triage
 
-**⏱️ Time: 2-3 minutes**
-
-1. Open Wazuh Dashboard → **Discover**
-2. Set time range to **Last 30 minutes**
-3. Apply filter: `rule.id: (5758 OR 5710 OR 5720 OR 2502)`
-4. Note total alert count
-
 **Quick Assessment:**
 
 | Alert Volume | Likely Cause |
@@ -61,8 +40,6 @@ Execute this playbook when you see these alerts in Wazuh SIEM:
 ---
 
 ## Step 2: Gather Key Information
-
-**⏱️ Time: 3-5 minutes**
 
 Click on an alert and document these fields:
 
@@ -81,22 +58,7 @@ Click on an alert and document these fields:
 
 ---
 
-## Step 3: Determine Source Type
-
-Check if the source IP is internal or external:
-
-| IP Range | Type | Implication |
-|----------|------|-------------|
-| 10.x.x.x | Internal | Possible compromised host |
-| 192.168.x.x | Internal | Possible compromised host |
-| 172.16-31.x.x | Internal | Possible compromised host |
-| Any other | External | External threat actor |
-
----
-
-## Step 4: Check for Successful Login
-
-**⚠️ This is critical - determines if escalation is urgent!**
+## Step 3: Check for Successful Login
 
 Search for successful authentication from the same source IP:
 
@@ -106,12 +68,12 @@ data.srcip: [ATTACKER_IP] AND rule.id: 5715
 
 | Result | Action |
 |--------|--------|
-| **No successful login** | Continue to Step 5 |
+| **No successful login** | Continue to Step 4 |
 | **Successful login found** | **ESCALATE IMMEDIATELY** |
 
 ---
 
-## Step 5: Classification Decision
+## Step 4: Classification Decision
 
 Based on your investigation, classify the alert:
 
@@ -128,12 +90,13 @@ Based on your investigation, classify the alert:
 - Help desk ticket matches timeframe
 - Legitimate service account activity
 
-**Classification:** ☐ True Positive → Escalate to Tier 2
-**Classification:** ☐ False Positive → Document and close
+IF True Positive → Block attack IP at firewall
+
+IF False Positive → Document and close
 
 ---
 
-## Step 6: Documentation
+## Step 5: Documentation
 
 Before escalating or closing, ensure you have:
 
@@ -143,52 +106,6 @@ Before escalating or closing, ensure you have:
 - [ ] Alert count recorded
 - [ ] Successful login check completed
 - [ ] Classification decision documented
-
----
-
-## Escalation to Tier 2
-
-**When to escalate:**
-- Classified as True Positive
-- Successful authentication detected from attacker IP
-- Multiple systems targeted simultaneously
-- Source is internal (possible lateral movement)
-- Unsure about classification
-
-### Escalation Template
-
-Copy and complete this template when escalating:
-
-```
-ESCALATION TO TIER 2
-
-Ticket/Incident ID: INC-___
-Time Detected: 
-Analyst: 
-
-SUMMARY:
-SSH brute force attack detected.
-- Source IP: 
-- Target System: 
-- Target Username: 
-- Total Alerts: 
-- Successful Auth: YES / NO
-
-CLASSIFICATION: True Positive
-
-INVESTIGATION COMPLETED:
-✓ Alert details reviewed
-✓ Source IP type identified (Internal/External)
-✓ Checked for successful logins
-✓ Screenshots attached
-
-RECOMMENDED ACTION:
-Block source IP at firewall
-
-ATTACHMENTS:
-- Screenshot: Alert overview
-- Screenshot: Alert details
-```
 
 ---
 
@@ -220,18 +137,6 @@ rule.id: 5715
 | `rule.id` | Detection rule that fired |
 | `rule.description` | What the rule detected |
 | `timestamp` | When the event occurred |
-
----
-
-## What Happens After Escalation?
-
-Once escalated, Tier 2 typically handles:
-- Blocking attacker IP at firewall
-- Reviewing affected systems for compromise
-- Resetting credentials if needed
-- Implementing additional security controls
-
-*As a Tier 1 analyst, your job is complete once you've properly triaged, documented, and escalated the incident.*
 
 ---
 
